@@ -25,9 +25,9 @@ uint8_t OLED_Display_SSD1306_Height = 64;
 int OLED_Display_SSD1306_Rotation = 0;
 uint8_t *OLED_Display_SSD1306_Buffer;
 
-
+#if defined(ESP8266)
 static void yield(void) {}
-
+#endif
 
 void OLED_Display_SSD1306_drawPixel(int16_t x, int16_t y, uint16_t color)
 {
@@ -203,4 +203,5 @@ void OLED_Display_SSD1306_init(uint8_t _i2caddr)
     Wire.endTransmission();
     OLED_Display_SSD1306_Buffer = (uint8_t *)malloc(OLED_Display_SSD1306_Width * ((OLED_Display_SSD1306_Height + 7) / 8));
     OLED_Display_SSD1306_clearDisplay();
+
 }
